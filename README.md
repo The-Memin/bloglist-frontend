@@ -100,3 +100,12 @@ VITE_API_BASE_URL=http://127.0.0.1:3003/api/blogs;
 ### Auth token
 Token is stored in localStorage (key: e.g. loggedBlogAppUser).
 The API client attaches Authorization: Bearer <token> to protected requests.
+
+## Notes
+* Delete is only allowed for the blog’s owner (validated by backend).
+
+* Tests cover login failure/success and blog interactions (create/like/delete).
+
+## Acknowledgments
+
+Part of **Full Stack Open**, University of Helsinki — Part 5.
