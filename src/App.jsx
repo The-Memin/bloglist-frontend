@@ -5,7 +5,8 @@ import Blogs from './components/Blogs'
 
 const App = () => {
   const {
-    blogs
+    blogs,
+    addNewBlog
   } = useBlogs()
   const {
         username,
@@ -15,8 +16,7 @@ const App = () => {
         handleChangePassword,
         handleLogin,
         handleLogOut
-  } = useLogin()  
-  console.log(user)
+  } = useLogin()
   return (
     <div>
       {
@@ -28,7 +28,7 @@ const App = () => {
             onChangePassword={handleChangePassword}
             onLogin={handleLogin}
           />:
-          <Blogs blogs={blogs} user={user} onLogOut={handleLogOut}/>
+          <Blogs blogs={blogs} addNewBlog={addNewBlog} user={user} onLogOut={handleLogOut}/>
       }
     </div>
   )

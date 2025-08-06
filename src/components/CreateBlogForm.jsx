@@ -1,0 +1,47 @@
+import { useState } from "react";
+const CreateBlogForm = ({addNewBlog}) => {
+    const [title, setTitle] = useState('')
+    const [author, setAuthor] = useState('')
+    const [url, setUrl] = useState('')
+
+    const setters = { title: setTitle, author: setAuthor, url: setUrl };
+    const handleChangeText = (field) => (e) => {
+        setters[field]?.(e.target.value);
+    }
+
+    const onCreateNewBlog = async (e) => {
+        e.preventDefault()
+        try{
+            const newBlog = {
+                'title': title,
+                'author': author,
+                'url': url
+            }
+            addNewBlog(newBlog)
+        }catch{
+            console.log('ha ocurrido un error')
+        }
+    }
+    return(
+        <div>
+            <h3>create new</h3>
+            <form onSubmit={onCreateNewBlog}>
+                <div>
+                    <label htmlFor="title">title:</label>
+                    <input type="text" value={title} onChange={handleChangeText('title')} name="text"/>
+                </div>
+                <div>
+                    <label htmlFor="author">author:</label>
+                    <input type="text" value={author} onChange={handleChangeText('author')} name="author"/>
+                </div>
+                <div>
+                    <label htmlFor="url">url:</label>
+                    <input type="text" value={url} onChange={handleChangeText('url')} name="url"/>
+                </div>
+                <button type="submit">create</button>
+            </form>
+        </div>
+    )
+}
+
+export default CreateBlogForm

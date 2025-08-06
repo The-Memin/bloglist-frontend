@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import  loginService  from '../services/login'
 import { LOGGED_BLOGAPP_USER } from '../constants/login'
+import blogsService from "../services/blogs";
 
 export default function useLogin() {
     const [username, setUsername] = useState('')
@@ -23,7 +24,8 @@ export default function useLogin() {
             window.localStorage.setItem(
                 LOGGED_BLOGAPP_USER, JSON.stringify(user)
             )
-            console.log(user)
+            
+            blogsService.setToken(user.token)
             setUser(user)
             setUsername('')
             setPassword('')
@@ -34,7 +36,7 @@ export default function useLogin() {
 
     const handleLogOut = () => {
         setUser(null)
-        window.localStorage.removeItem(LOGGED_BLOGAPP_USER) 
+        window.localStorage.removeItem(LOGGED_BLOGAPP_USER)  
     }
 
     useEffect(() => {
@@ -42,6 +44,7 @@ export default function useLogin() {
         if(loggedUserJSON){
             const user = JSON.parse(loggedUserJSON)
             setUser(user)
+            blogsService.setToken(user.token)
         }
     },[])
 
