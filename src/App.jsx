@@ -1,26 +1,22 @@
-import { useState, useEffect } from 'react'
-import Blog from './components/Blog'
-import blogService from './services/blogs'
 import LoginForm from './components/LoginForm'
 import useLogin from "./hooks/useLogin"
+import useBlogs from './hooks/useBlogs'
+import Blogs from './components/Blogs'
 
 const App = () => {
-  const [blogs, setBlogs] = useState([])
-   const {
+  const {
+    blogs
+  } = useBlogs()
+  const {
         username,
         password,
         user,
         handleChangeUsername,
         handleChangePassword,
-        handleLogin
-  } = useLogin()
-
-  useEffect(() => {
-    blogService.getAll().then(blogs =>
-      setBlogs( blogs )
-    )  
-  }, [])
-
+        handleLogin,
+        handleLogOut
+  } = useLogin()  
+  console.log(user)
   return (
     <div>
       {
@@ -32,13 +28,7 @@ const App = () => {
             onChangePassword={handleChangePassword}
             onLogin={handleLogin}
           />:
-          <div>
-              <p>{user.name} logged in</p>
-              <h2>blogs</h2>
-              {blogs.map(blog =>
-                <Blog key={blog.id} blog={blog} />
-              )}
-          </div>
+          <Blogs blogs={blogs} user={user} onLogOut={handleLogOut}/>
       }
     </div>
   )

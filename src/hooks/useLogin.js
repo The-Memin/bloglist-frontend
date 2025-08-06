@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import  loginService  from '../services/login'
+import { LOGGED_BLOGAPP_USER } from '../constants/login'
+
 export default function useLogin() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -19,7 +21,7 @@ export default function useLogin() {
             const user = await loginService.login({username, password})
 
             window.localStorage.setItem(
-                'loggedBlogUser', JSON.stringify(user)
+                LOGGED_BLOGAPP_USER, JSON.stringify(user)
             )
             console.log(user)
             setUser(user)
@@ -30,12 +32,16 @@ export default function useLogin() {
         }
     }
 
+    const handleLogOut = () => {
+        setUser(null)
+        window.localStorage.removeItem(LOGGED_BLOGAPP_USER) 
+    }
+
     useEffect(() => {
-        const loggedUserJSON = window.localStorage.getItem('loggedBlogUser')
+        const loggedUserJSON = window.localStorage.getItem(LOGGED_BLOGAPP_USER )
         if(loggedUserJSON){
             const user = JSON.parse(loggedUserJSON)
             setUser(user)
-
         }
     },[])
 
@@ -45,6 +51,7 @@ export default function useLogin() {
         user,
         handleChangeUsername,
         handleChangePassword,
-        handleLogin
+        handleLogin,
+        handleLogOut
     }
 }
