@@ -2,7 +2,6 @@ const LoginForm = ({username, password, onLogin, onChangePassword, onChangeUsern
    
     return(
         <div>
-            <h2>Log in to application</h2>
             <form onSubmit={onLogin}>
                 <div>
                     <label htmlFor="username">username</label>
