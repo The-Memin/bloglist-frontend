@@ -1,15 +1,29 @@
-const LoginForm = ({username, password, onLogin, onChangePassword, onChangeUsername }) => {
-   
+import useLoginForm from "../hooks/useLoginForm"
+const LoginForm = ({onLogin}) => {
+    const {
+        password,
+        username,
+        changePassword,
+        changeUsername
+    } = useLoginForm()
+
+    const login = (e) => {
+        e.preventDefault()
+        onLogin(username, password)
+        changePassword('')
+        changeUsername('')
+    }
+
     return(
         <div>
-            <form onSubmit={onLogin}>
+            <form onSubmit={login}>
                 <div>
                     <label htmlFor="username">username</label>
                     <input 
                         type="text" 
                         name="username"
                         value={username}
-                        onChange={({target}) => onChangeUsername(target.value)}
+                        onChange={({target}) => changeUsername(target.value)}
                     />
                 </div>
                 <div>
@@ -18,7 +32,7 @@ const LoginForm = ({username, password, onLogin, onChangePassword, onChangeUsern
                         type="password"
                         name="password"
                         value={password}
-                        onChange={({target}) => onChangePassword(target.value)}
+                        onChange={({target}) => changePassword(target.value)}
                     />
                 </div>
                 <button type="submit">login</button>

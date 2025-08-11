@@ -1,5 +1,5 @@
 import { useState } from "react";
-const CreateBlogForm = ({addNewBlog}) => {
+const CreateBlogForm = ({addBlog}) => {
     const [title, setTitle] = useState('')
     const [author, setAuthor] = useState('')
     const [url, setUrl] = useState('')
@@ -17,7 +17,10 @@ const CreateBlogForm = ({addNewBlog}) => {
                 'author': author,
                 'url': url
             }
-            addNewBlog(newBlog)
+            addBlog(newBlog)
+            setTitle('')
+            setAuthor('')
+            setUrl('')
         }catch{
             console.log('ha ocurrido un error')
         }

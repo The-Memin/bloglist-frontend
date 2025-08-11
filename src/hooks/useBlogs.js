@@ -27,7 +27,6 @@ export default function useBlogs(setNotification){
                 type: 'error'
             })
         }
-        
     }
 
     useEffect(() => {
