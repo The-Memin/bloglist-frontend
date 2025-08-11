@@ -17,9 +17,11 @@ const Blogs = ({blogs, addNewBlog, user, onLogOut}) => {
             <Togglable buttonLabel="create a new blog" ref={blogRef}>
               <CreateBlogForm addBlog={addBlog}/>
             </Togglable>
-            {blogs.map(blog =>
-              <Blog key={blog.id} blog={blog} />
-            )}
+            <div style={ {marginTop: "1em"} }>
+              {blogs.map(blog =>
+                <Blog key={blog.id} blog={blog} />
+              )}
+            </div>
         </div>
     )
 }
