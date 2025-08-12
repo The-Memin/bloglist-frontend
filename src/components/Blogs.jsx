@@ -2,9 +2,15 @@ import Blog from '../components/Blog'
 import CreateBlogForm from './CreateBlogForm'
 import Togglable from './Togglable'
 import { useRef } from 'react'
-const Blogs = ({blogs, addNewBlog, user, onLogOut}) => {
-    const blogRef = useRef()
+import useBlogs from '../hooks/useBlogs'
 
+const Blogs = ({user, onLogOut, setNotification}) => {
+    const blogRef = useRef()
+    const {
+      blogs,
+      addNewBlog,
+      updateLikes
+    } = useBlogs()
     const addBlog = (newBlog)=>{
       blogRef.current.toggleVisibility()
       addNewBlog(newBlog)
@@ -19,7 +25,7 @@ const Blogs = ({blogs, addNewBlog, user, onLogOut}) => {
             </Togglable>
             <div style={ {marginTop: "1em"} }>
               {blogs.map(blog =>
-                <Blog key={blog.id} blog={blog} />
+                <Blog key={blog.id} blog={blog} setNotification={setNotification} updateLikes={updateLikes}/>
               )}
             </div>
         </div>

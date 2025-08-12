@@ -29,6 +29,29 @@ export default function useBlogs(setNotification){
         }
     }
 
+    const updateLikes = async blog => {
+        try {
+            const currentBlog = {
+                ...blog,
+                likes: blog.likes + 1,
+            }
+            const  updatedBlog = await blogService.update(currentBlog)
+
+            const updatedBlogs = blogs.map(blog => {
+                if (blog.id === updatedBlog.id) {
+                    return {...updatedBlog}
+                }
+                return blog
+            })
+            setBlogs(updatedBlogs)
+        } catch (e) {
+            setNotification({
+                content: e.response.data.error,
+                type: 'error'
+            })
+        }
+    }
+
     useEffect(() => {
         blogService.getAll().then(blogs =>
             setBlogs( blogs )
@@ -38,6 +61,7 @@ export default function useBlogs(setNotification){
     return {
         blogs,
         notificationBlog:{ message: notificationMessage, resetMessage: resetNotificationMessage },
-        addNewBlog
+        addNewBlog,
+        updateLikes
     }
 }
