@@ -29,6 +29,28 @@ export default function useBlogs(setNotification){
         }
     }
 
+    const deleteBlog = async blog => {
+        try {
+            const deleteBlog = window.confirm(`Remove blog You're NOT gonna need it! by ${blog.author}`)
+            if(!deleteBlog) return null
+
+            await blogService.remove(blog.id)
+
+            const updatedBlogs = blogs.filter(b => b.id !== blog.id)
+            setBlogs(updatedBlogs)
+            setNotification({
+                content: `The blog ${blog.title} has been successfully deleted`,
+                type: 'success'
+            })
+        } catch (error) {
+            console.log(error)
+            setNotification({
+                content: error.response.data.error,
+                type: 'error'
+            })
+        }
+    }
+
     const updateLikes = async blog => {
         try {
             const currentBlog = {
@@ -62,6 +84,7 @@ export default function useBlogs(setNotification){
         blogs,
         notificationBlog:{ message: notificationMessage, resetMessage: resetNotificationMessage },
         addNewBlog,
+        deleteBlog,
         updateLikes
     }
 }

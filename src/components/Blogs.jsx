@@ -23,6 +23,7 @@ const Blogs = ({user, onLogOut, setNotification}) => {
     const {
       blogs,
       addNewBlog,
+      deleteBlog,
       updateLikes
     } = useBlogs(setNotification)
     const addBlog = (newBlog)=>{
@@ -48,7 +49,7 @@ const Blogs = ({user, onLogOut, setNotification}) => {
               <button onClick={()=>sortBlogsByLikes(SORT.DESC)}>sort by most likes</button>
               <button onClick={()=>sortBlogsByLikes(SORT.ASC)}>sort by few likes</button>
               {blogsToShow.map(blog =>
-                <Blog key={blog.id} blog={blog} updateLikes={updateLikes}/>
+                <Blog key={blog.id} blog={blog} updateLikes={updateLikes} deleteBlog={deleteBlog} user={user}/>
               )}
             </div>
         </div>
