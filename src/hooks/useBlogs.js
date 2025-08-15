@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 import blogService from '../services/blogs'
 
 export default function useBlogs(setNotification){
@@ -9,14 +9,14 @@ export default function useBlogs(setNotification){
         setNotificationMessage(null)
     }
 
-    const addNewBlog = async newBlog =>{
+    const addNewBlog = async newBlog => {
         try {
             const createdBlog = await blogService.create(newBlog)
             setBlogs(prev => [...prev, createdBlog])
             if (setNotification) {
                 setNotification({
                     content: `a new blog  You're NOT gonna need it! by ${createdBlog.author} added`,
-                    type: "success"
+                    type: 'success'
                 })
             }else{
                 console.error(`a new blog  You're NOT gonna need it! by ${createdBlog.author} added`)
@@ -61,7 +61,7 @@ export default function useBlogs(setNotification){
 
             const updatedBlogs = blogs.map(blog => {
                 if (blog.id === updatedBlog.id) {
-                    return {...updatedBlog}
+                    return { ...updatedBlog }
                 }
                 return blog
             })
@@ -77,7 +77,7 @@ export default function useBlogs(setNotification){
     useEffect(() => {
         blogService.getAll().then(blogs =>
             setBlogs( blogs )
-        )  
+        )
     }, [])
 
     return {

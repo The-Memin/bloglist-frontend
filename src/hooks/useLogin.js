@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 import  loginService  from '../services/login'
 import { LOGGED_BLOGAPP_USER } from '../constants/login'
-import blogsService from "../services/blogs";
+import blogsService from '../services/blogs'
 
 export default function useLogin(setNotification) {
     const [user, setUser] = useState(null)
@@ -13,12 +13,12 @@ export default function useLogin(setNotification) {
 
     const handleLogin = async (username, password) => {
         try {
-            const user = await loginService.login({username, password})
+            const user = await loginService.login({ username, password })
 
             window.localStorage.setItem(
                 LOGGED_BLOGAPP_USER, JSON.stringify(user)
             )
-            
+
             blogsService.setToken(user.token)
             setUser(user)
         } catch (error) {
@@ -35,7 +35,7 @@ export default function useLogin(setNotification) {
 
     const handleLogOut = () => {
         setUser(null)
-        window.localStorage.removeItem(LOGGED_BLOGAPP_USER)  
+        window.localStorage.removeItem(LOGGED_BLOGAPP_USER)
     }
 
     useEffect(() => {
@@ -49,7 +49,7 @@ export default function useLogin(setNotification) {
 
     return {
         user,
-        notificationLogin: {message: errorMessage, resetMessage: resetErrorMessage},
+        notificationLogin: { message: errorMessage, resetMessage: resetErrorMessage },
         handleLogin,
         handleLogOut
     }

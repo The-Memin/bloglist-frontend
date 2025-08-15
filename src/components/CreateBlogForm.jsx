@@ -1,12 +1,12 @@
-import { useState } from "react";
-const CreateBlogForm = ({addBlog}) => {
+import { useState } from 'react'
+const CreateBlogForm = ({ addBlog }) => {
     const [title, setTitle] = useState('')
     const [author, setAuthor] = useState('')
     const [url, setUrl] = useState('')
 
-    const setters = { title: setTitle, author: setAuthor, url: setUrl };
+    const setters = { title: setTitle, author: setAuthor, url: setUrl }
     const handleChangeText = (field) => (e) => {
-        setters[field]?.(e.target.value);
+        setters[field]?.(e.target.value)
     }
 
     const onCreateNewBlog = async (e) => {

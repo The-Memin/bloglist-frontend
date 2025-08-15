@@ -1,14 +1,13 @@
-import { useState } from "react"
+import { useState } from 'react'
 const useLoginForm = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    
 
-    const changePassword = (p)=>{
+    const changePassword = (p) => {
         setPassword(p)
     }
 
-    const changeUsername = (u)=>{
+    const changeUsername = (u) => {
         setUsername(u)
     }
 

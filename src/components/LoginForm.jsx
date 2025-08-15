@@ -1,5 +1,5 @@
-import useLoginForm from "../hooks/useLoginForm"
-const LoginForm = ({onLogin}) => {
+import useLoginForm from '../hooks/useLoginForm'
+const LoginForm = ({ onLogin }) => {
     const {
         password,
         username,
@@ -19,26 +19,26 @@ const LoginForm = ({onLogin}) => {
             <form onSubmit={login}>
                 <div>
                     <label htmlFor="username">username</label>
-                    <input 
-                        type="text" 
+                    <input
+                        type="text"
                         name="username"
                         value={username}
-                        onChange={({target}) => changeUsername(target.value)}
+                        onChange={({ target }) => changeUsername(target.value)}
                     />
                 </div>
                 <div>
                     <label htmlFor="password">password</label>
-                    <input 
+                    <input
                         type="password"
                         name="password"
                         value={password}
-                        onChange={({target}) => changePassword(target.value)}
+                        onChange={({ target }) => changePassword(target.value)}
                     />
                 </div>
                 <button type="submit">login</button>
             </form>
         </div>
-        )
+    )
 }
 
 export default LoginForm
