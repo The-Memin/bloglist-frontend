@@ -4,6 +4,7 @@ import globals from 'globals'
 import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
+import vitestGlobals from 'eslint-plugin-vitest-globals'
 
 export default [
     {
@@ -34,7 +35,8 @@ export default [
             ...react.configs['jsx-runtime'].rules,
             // Equivalente a "plugin:react-hooks/recommended"
             ...reactHooks.configs['recommended-latest'].rules,
-
+            // equivalente a "extends: plugin:vitest-globals/recommended"
+            ...vitestGlobals.configs.recommended.rules,
             // Tus reglas personalizadas
             indent: ['error', 4],
             'linebreak-style': ['error', 'unix'],
