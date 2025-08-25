@@ -20,7 +20,7 @@ export default [
         languageOptions: {
             ecmaVersion: 'latest',
             sourceType: 'module',
-            globals: { ...globals.browser, ...globals.node },
+            globals: { ...globals.browser, ...globals.node, ...vitestGlobals.environments.env.globals },
             parserOptions: { ecmaFeatures: { jsx: true } },
         },
         plugins: {
