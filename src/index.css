@@ -1,5 +1,5 @@
 :root{
-    --error-color: #dc3545;
+    --error-color: #ff0000;
     --success-color: #198754;
     --warning-color: #ffc107;
     --bg-notification: rgb(224, 224, 224);

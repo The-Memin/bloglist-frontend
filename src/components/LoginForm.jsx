@@ -20,6 +20,8 @@ const LoginForm = ({ onLogin }) => {
                 <div>
                     <label htmlFor="username">username</label>
                     <input
+                        data-testid="username-input"
+                        placeholder='username'
                         type="text"
                         name="username"
                         value={username}
@@ -29,6 +31,8 @@ const LoginForm = ({ onLogin }) => {
                 <div>
                     <label htmlFor="password">password</label>
                     <input
+                        data-testid="password-input"
+                        placeholder='password'
                         type="password"
                         name="password"
                         value={password}
